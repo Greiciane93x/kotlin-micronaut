@@ -11,12 +11,13 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autores")
-class CadastroAutorController(@Inject val autorRepository: AutorRepository) {
-
+class CadastroAutorController(@Inject val autorRepository: AutorRepository,
+                              @Inject val enderecoClient: EnderecoClient) {
 
     @Post
     fun cadastra(@Body @Valid form:NovoAutorForm ):HttpResponse<Any>{
-        val autor = form.converterParaAutor()
+        val enderecoDto: HttpResponse<EnderecoDto> = enderecoClient.consulta(form.cep)
+        val autor = form.converterParaAutor(enderecoDto.body()!!)
         autorRepository.save(autor)
         val uri = UriBuilder.of("/autores/{id}")
             .expand(mutableMapOf(Pair("id", autor.id)))

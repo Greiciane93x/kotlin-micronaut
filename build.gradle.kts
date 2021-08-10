@@ -39,6 +39,10 @@ dependencies {
     implementation("io.micronaut:micronaut-validation")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    //teste consultando api externa
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
     //JPA
     runtime("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")

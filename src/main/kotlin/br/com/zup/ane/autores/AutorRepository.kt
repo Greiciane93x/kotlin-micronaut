@@ -6,5 +6,8 @@ import java.util.*
 
 @Repository
 interface AutorRepository: JpaRepository<Autor, Long> {
+//    @Query("SELECT a FROM Autor a WHERE a.email = :email")
+//    fun buscaPorEmail(email: String) : Optional<0Autor>
+
     fun findByEmail(email: String): Optional<Autor>
 }
